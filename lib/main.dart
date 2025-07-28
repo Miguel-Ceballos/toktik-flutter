@@ -13,13 +13,15 @@ class TokTik extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => DiscoverProvider()) // Se agrega el provider para que sea visible en toda la app
+        ChangeNotifierProvider(
+          create: (_) => DiscoverProvider()..loadNextPage(),
+        ), // Se agrega el provider para que sea visible en toda la app
       ],
       child: MaterialApp(
-          title: 'TokTik',
-          debugShowCheckedModeBanner: false, // Quita banner de debug
-          theme: AppTheme().getTheme(), // Aplica el tema de la app
-          home: DiscoverScreen()
+        title: 'TokTik',
+        debugShowCheckedModeBanner: false, // Quita banner de debug
+        theme: AppTheme().getTheme(), // Aplica el tema de la app
+        home: DiscoverScreen(),
       ),
     );
   }
