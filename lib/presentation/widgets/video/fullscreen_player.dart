@@ -44,22 +44,31 @@ class _FullscreenPlayerState extends State<FullscreenPlayer> {
           return const Center(child: CircularProgressIndicator(strokeWidth: 2));
         }
 
-        return AspectRatio(
-          aspectRatio: _controller.value.aspectRatio,
-          child: Stack(
-            children: [
-              VideoPlayer(_controller),
+        return GestureDetector(
+          onTap: () {
+            if(_controller.value.isPlaying){
+              _controller.pause();
+              return;
+            }
+            _controller.play();
+          },
+          child: AspectRatio(
+            aspectRatio: _controller.value.aspectRatio,
+            child: Stack(
+              children: [
+                VideoPlayer(_controller),
 
-              // Gradient
+                // Gradient
 
-              // Text
-              Positioned(
-                bottom: 20,
-                left: 20,
-                child: _VideoCaption(caption: widget.caption),
-              ),
-            ],
-          ),
+                // Text
+                Positioned(
+                  bottom: 20,
+                  left: 20,
+                  child: _VideoCaption(caption: widget.caption),
+                ),
+              ],
+            ),
+          )
         );
       },
     );
